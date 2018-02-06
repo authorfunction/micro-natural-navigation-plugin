@@ -5,14 +5,14 @@
 		"Tags": ["navigation"],
 		"Versions": [
             {
-                "Version": "1.1.0-af",
+                "Version": "1.1.0",
                 "Url": "https://github.com/samdmarshall/micro-natural-navigation-plugin/archive/v1.1.0.zip",
                 "Require": {
                     "micro": ">=1.1.3"
                 }
             },
 			{
-				"Version": "1.0.0-af",
+				"Version": "1.0.0",
 				"Url": "https://github.com/samdmarshall/micro-natural-navigation-plugin/archive/v1.0.0.zip",
 				"Require": {
 					"micro": ">=1.1.3"
