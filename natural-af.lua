@@ -1,4 +1,4 @@
-VERSION = "1.1.0-af"
+VERSION = "1.1.0"
 
 -- af=authorfunction
 
