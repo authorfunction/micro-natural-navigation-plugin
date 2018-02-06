@@ -1,5 +1,6 @@
 VERSION = "1.1.0-af"
 
+-- af=authorfunction
 
 function GetCurrentVisualLine()
     return CurView().Cursor.Y + 1 -- Because this is zero-indexed
