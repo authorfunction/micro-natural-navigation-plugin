@@ -2,6 +2,7 @@ VERSION = "1.1.0-0.0.2"
 
 -- af=authorfunction
 -- versioning test
+local lastpos = CurView().Cursor.X
 
 function GetCurrentVisualLine()
     return CurView().Cursor.Y + 1 -- Because this is zero-indexed
@@ -19,9 +20,9 @@ function MoveDown()
     local line_length = GetCurrentLineLength()
     local raw_offset = CurView().Cursor.X + CurView().Width
     if line_length > CurView().Width and raw_offset < line_length then
-        CurView().Cursor.X = math.min(line_length, raw_offset) - 3 -- <== hack
-    else
-        CurView().Cursor:Down()
+       	CurView().Cursor.X = CurView().Cursor.X + CurView().Width -3 -- <== hack
+   	else
+		CurView().Cursor:Down()
     end
 end
 
@@ -43,17 +44,12 @@ end
 function MoveUp()
     local line_length = GetCurrentLineLength()
     local raw_offset = CurView().Cursor.X - CurView().Width
+
     if line_length > CurView().Width and raw_offset > 0 then
         CurView().Cursor.X = math.max(0, raw_offset) + 3 -- <== hack
+        CurView().Cursor:StoreVisualX()
     else
-        CurView().Cursor:Up()
-        --[[Authorfunction: This code is probably here to compensate for unwanted behaviour, but broken and makes things worse:
-        local new_line_length = GetCurrentLineLength()
-        if new_line_length > CurView().Width then
-            local wrapped_line_count = math.floor(new_line_length / CurView().Width)
-            CurView().Cursor.X = (wrapped_line_count * CurView().Width) + (new_line_length % CurView().Width)
-        end
-        --]]
+    	CurView().Cursor:Up()
     end
 end
 
@@ -70,6 +66,7 @@ function NavigateUp()
         end
     end
 end
+
 
 -- autorfunction, added: BindKeys for automatic setup
 BindKey("Up", "natural.NavigateUp")
